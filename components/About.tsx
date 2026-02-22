@@ -1,16 +1,26 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { useRef } from 'react';
 
 export default function About() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
   return (
-    <section id="about" className="py-32 bg-orange-500 text-black relative overflow-hidden">
+    <section ref={ref} id="about" className="py-32 bg-orange-500 text-black relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col gap-20">
           
           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            style={{ y }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >

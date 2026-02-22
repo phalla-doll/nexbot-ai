@@ -1,13 +1,23 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import { useRef } from 'react';
 
 export default function Hero() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="relative h-[100dvh] w-full overflow-hidden bg-black">
+    <section ref={ref} className="relative h-[100dvh] w-full overflow-hidden bg-black">
       {/* Spline Background - Optimized for mobile */}
-      <div className="absolute inset-0 z-0">
+      <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/40 md:bg-transparent z-10 pointer-events-none" /> {/* Mobile dimmer */}
         <iframe 
           src='https://my.spline.design/nexbotrobotcharacterconcept-UYMSefKwUYx8I38ifwWN4bek/' 
@@ -17,7 +27,7 @@ export default function Hero() {
           className="w-full h-full scale-125 md:scale-100 origin-center object-cover"
           title="3D Robot Character"
         ></iframe>
-      </div>
+      </motion.div>
 
       {/* Gradient Overlay for Text Readability */}
       <div className="absolute inset-0 z-10 bg-gradient-to-t md:bg-gradient-to-r from-black via-black/80 md:via-black/50 to-transparent pointer-events-none" />

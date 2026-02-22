@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { useRef } from 'react';
 
 const testimonials = [
   {
@@ -21,8 +22,16 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+
   return (
-    <section className="py-32 bg-black border-y border-white/10 overflow-hidden">
+    <section ref={ref} className="py-32 bg-black border-y border-white/10 overflow-hidden">
       <div className="container mx-auto px-6 mb-20">
         <h2 className="font-display text-4xl font-bold text-white uppercase tracking-widest text-center">
           Verified <span className="text-orange-500">Intel</span>
@@ -30,7 +39,7 @@ export default function Testimonials() {
       </div>
 
       <div className="relative flex overflow-x-hidden">
-        <div className="animate-marquee whitespace-nowrap flex gap-16">
+        <motion.div style={{ x }} className="animate-marquee whitespace-nowrap flex gap-16">
           {[...testimonials, ...testimonials].map((item, index) => (
             <div key={index} className="w-[80vw] md:w-[600px] shrink-0 p-8 md:p-12 border border-white/20 bg-white/5 rounded-3xl backdrop-blur-sm hover:border-orange-500 transition-colors duration-500 group whitespace-normal">
               <p className="font-display text-3xl md:text-5xl font-bold text-white mb-8 leading-tight group-hover:text-orange-500 transition-colors break-words">
@@ -45,7 +54,7 @@ export default function Testimonials() {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

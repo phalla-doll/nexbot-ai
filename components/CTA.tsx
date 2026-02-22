@@ -1,15 +1,25 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import { useRef } from 'react';
 
 export default function CTA() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1.2]);
+
   return (
-    <section className="py-32 bg-orange-500 relative overflow-hidden flex items-center justify-center min-h-[80vh]">
+    <section ref={ref} className="py-32 bg-orange-500 relative overflow-hidden flex items-center justify-center min-h-[80vh]">
       <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          style={{ scale }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >

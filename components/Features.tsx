@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Brain, Zap, Shield, Globe, Cpu, ArrowUpRight } from 'lucide-react';
+import { useRef } from 'react';
 
 const features = [
   {

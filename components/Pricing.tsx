@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Check, Zap } from 'lucide-react';
+import { useRef } from 'react';
 
 const plans = [
   {
@@ -25,15 +26,23 @@ const plans = [
 ];
 
 export default function Pricing() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
   return (
-    <section id="pricing" className="py-32 bg-black relative">
+    <section ref={ref} id="pricing" className="py-32 bg-black relative">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="mb-24 text-center">
+        <motion.div style={{ y }} className="mb-24 text-center">
           <h2 className="font-display text-6xl md:text-8xl font-bold text-white uppercase tracking-tighter">
             Select Your <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">Power Level.</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {plans.map((plan, index) => (
