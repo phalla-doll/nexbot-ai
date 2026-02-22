@@ -57,8 +57,8 @@ export default function Pricing() {
               )}
 
               <div className="mb-10">
-                <h3 className="font-display text-2xl font-bold mb-4 tracking-widest">{plan.name}</h3>
-                <div className="text-6xl font-bold tracking-tighter">{plan.price}</div>
+                <h3 className="font-display text-xl md:text-2xl font-bold mb-4 tracking-widest">{plan.name}</h3>
+                <div className="text-4xl md:text-6xl font-bold tracking-tighter">{plan.price}</div>
               </div>
 
               <div className="flex-grow mb-12">

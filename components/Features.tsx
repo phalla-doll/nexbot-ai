@@ -51,7 +51,7 @@ export default function Features() {
     <section id="features" className="py-32 bg-black relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="mb-24">
-          <h2 className="font-display text-6xl md:text-8xl font-bold text-white mb-8 leading-[0.85] tracking-tighter uppercase">
+          <h2 className="font-display text-4xl md:text-6xl lg:text-8xl font-bold text-white mb-8 leading-[0.85] tracking-tighter uppercase">
             Engineered <br />
             <span className="text-orange-500">Dominance.</span>
           </h2>

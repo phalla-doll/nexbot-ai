@@ -32,8 +32,8 @@ export default function Testimonials() {
       <div className="relative flex overflow-x-hidden">
         <div className="animate-marquee whitespace-nowrap flex gap-16">
           {[...testimonials, ...testimonials].map((item, index) => (
-            <div key={index} className="w-[600px] shrink-0 p-12 border border-white/20 bg-white/5 rounded-3xl backdrop-blur-sm hover:border-orange-500 transition-colors duration-500 group">
-              <p className="font-display text-5xl font-bold text-white mb-8 leading-tight group-hover:text-orange-500 transition-colors">
+            <div key={index} className="w-[80vw] md:w-[600px] shrink-0 p-8 md:p-12 border border-white/20 bg-white/5 rounded-3xl backdrop-blur-sm hover:border-orange-500 transition-colors duration-500 group whitespace-normal">
+              <p className="font-display text-3xl md:text-5xl font-bold text-white mb-8 leading-tight group-hover:text-orange-500 transition-colors break-words">
                 &quot;{item.quote}&quot;
               </p>
               <div className="flex items-center gap-4">
