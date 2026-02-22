@@ -1,22 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const { scrollY } = useScroll();
+  
+  const backgroundColor = useTransform(scrollY, [0, 50], ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.8)"]);
+  const backdropFilter = useTransform(scrollY, [0, 50], ["blur(0px)", "blur(12px)"]);
+  const borderColor = useTransform(scrollY, [0, 50], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.1)"]);
+  const paddingBlock = useTransform(scrollY, [0, 50], ["24px", "16px"]);
 
   return (
     <>
@@ -24,9 +20,16 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-12 flex justify-between items-center transition-all duration-300 ${
-          isScrolled ? 'backdrop-blur-md bg-black/80 border-b border-white/10' : 'bg-transparent'
-        }`}
+        style={{ 
+          backgroundColor, 
+          backdropFilter, 
+          borderBottomColor: borderColor,
+          borderBottomWidth: 1,
+          borderBottomStyle: 'solid',
+          paddingTop: paddingBlock,
+          paddingBottom: paddingBlock
+        }}
+        className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 flex justify-between items-center"
       >
         <Link href="/" className="font-display text-2xl font-bold tracking-tighter text-white z-50">
           NEXBOT
