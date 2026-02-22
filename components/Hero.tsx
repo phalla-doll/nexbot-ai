@@ -28,7 +28,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="inline-block px-3 py-1 mb-6 text-xs font-medium tracking-wider text-cyan-400 uppercase border border-cyan-400/30 rounded-full bg-cyan-400/10 backdrop-blur-sm">
+            <span className="inline-block px-3 py-1 mb-6 text-xs font-medium tracking-wider text-orange-500 uppercase border border-orange-500/30 rounded-full bg-orange-500/10 backdrop-blur-sm">
               Next Gen AI Agent
             </span>
           </motion.div>
@@ -60,7 +60,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <button className="group flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full font-medium text-lg hover:bg-white/90 transition-all hover:scale-105 active:scale-95">
+            <button className="group flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full font-medium text-lg hover:bg-orange-500 hover:text-white transition-all hover:scale-105 active:scale-95 duration-300">
               Start Building
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>

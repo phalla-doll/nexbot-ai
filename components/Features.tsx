@@ -41,8 +41,8 @@ export default function Features() {
     <section id="features" className="py-32 bg-black relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px]" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-[128px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-[128px]" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -63,10 +63,10 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-sm"
+              className="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-sm hover:border-orange-500/30"
             >
-              <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/10">
-                <feature.icon className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/10 group-hover:border-orange-500/50 group-hover:bg-orange-500/10">
+                <feature.icon className="w-6 h-6 text-white group-hover:text-orange-500 transition-colors" />
               </div>
               <h3 className="font-display text-xl font-bold text-white mb-3">{feature.title}</h3>
               <p className="text-white/60 leading-relaxed">{feature.description}</p>
