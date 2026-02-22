@@ -1,61 +1,64 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Brain, Zap, Shield, Globe, Cpu, Code } from 'lucide-react';
+import { Brain, Zap, Shield, Globe, Cpu, ArrowUpRight } from 'lucide-react';
 
 const features = [
   {
     icon: Brain,
-    title: "Neural Processing",
-    description: "Advanced cognitive architecture that adapts to your workflow in real-time."
+    title: "NEURAL PROCESSING",
+    description: "Cognitive architecture that adapts in real-time.",
+    colSpan: "md:col-span-2",
+    bg: "bg-orange-500",
+    text: "text-black"
   },
   {
     icon: Zap,
-    title: "Instant Execution",
-    description: "Lightning-fast response times with edge computing capabilities."
+    title: "INSTANT EXECUTION",
+    description: "Edge computing for 0ms latency.",
+    colSpan: "md:col-span-1",
+    bg: "bg-white/5",
+    text: "text-white"
   },
   {
     icon: Shield,
-    title: "Enterprise Security",
-    description: "Bank-grade encryption and privacy protocols built into the core."
+    title: "MILITARY GRADE",
+    description: "Unbreakable encryption protocols.",
+    colSpan: "md:col-span-1",
+    bg: "bg-white/5",
+    text: "text-white"
   },
   {
     icon: Globe,
-    title: "Global Connectivity",
-    description: "Seamless integration with APIs and services across the entire web."
+    title: "GLOBAL MESH",
+    description: "Connects with everything, everywhere.",
+    colSpan: "md:col-span-2",
+    bg: "bg-white",
+    text: "text-black"
   },
   {
     icon: Cpu,
-    title: "Autonomous Agents",
-    description: "Self-improving agents that learn from interactions and optimize tasks."
-  },
-  {
-    icon: Code,
-    title: "Developer First",
-    description: "Extensive SDKs and documentation for custom implementation."
+    title: "AUTONOMOUS",
+    description: "Self-improving agents that never sleep.",
+    colSpan: "md:col-span-3",
+    bg: "bg-white/5",
+    text: "text-white"
   }
 ];
 
 export default function Features() {
   return (
-    <section id="features" className="py-20 md:py-32 bg-black relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-orange-500/10 rounded-full blur-[100px] md:blur-[128px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-red-500/10 rounded-full blur-[100px] md:blur-[128px]" />
-      </div>
-
+    <section id="features" className="py-32 bg-black relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="mb-12 md:mb-20 max-w-2xl">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">
-            Engineered for <span className="text-white/50">Performance.</span>
+        <div className="mb-24">
+          <h2 className="font-display text-6xl md:text-8xl font-bold text-white mb-8 leading-[0.85] tracking-tighter uppercase">
+            Engineered <br />
+            <span className="text-orange-500">Dominance.</span>
           </h2>
-          <p className="text-lg md:text-xl text-white/60">
-            NexBot combines cutting-edge AI research with robust engineering to deliver an unparalleled agent experience.
-          </p>
+          <div className="h-2 w-32 bg-orange-500" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -63,13 +66,29 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-sm hover:border-orange-500/30"
+              className={`group relative p-8 md:p-12 rounded-3xl ${feature.colSpan} ${feature.bg} overflow-hidden transition-all duration-500 hover:scale-[1.02]`}
             >
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/10 group-hover:border-orange-500/50 group-hover:bg-orange-500/10">
-                <feature.icon className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:text-orange-500 transition-colors" />
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <ArrowUpRight className={`w-8 h-8 ${feature.text}`} />
               </div>
-              <h3 className="font-display text-lg md:text-xl font-bold text-white mb-2 md:mb-3">{feature.title}</h3>
-              <p className="text-sm md:text-base text-white/60 leading-relaxed">{feature.description}</p>
+              
+              <div className="h-full flex flex-col justify-between relative z-10">
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-8 ${feature.text === 'text-white' ? 'bg-white/10' : 'bg-black/10'}`}>
+                  <feature.icon className={`w-8 h-8 ${feature.text}`} />
+                </div>
+                
+                <div>
+                  <h3 className={`font-display text-3xl md:text-4xl font-bold mb-4 ${feature.text} tracking-tight`}>
+                    {feature.title}
+                  </h3>
+                  <p className={`text-lg md:text-xl font-medium leading-tight ${feature.text} opacity-70`}>
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none" />
             </motion.div>
           ))}
         </div>

@@ -1,57 +1,49 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Star } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "NexBot has completely transformed how our development team operates. The code generation is scary good.",
-    author: "Sarah Jenkins",
-    role: "CTO at TechFlow",
-    rating: 5
+    quote: "IT WRITES CODE BETTER THAN I DO.",
+    author: "SARAH JENKINS",
+    role: "CTO @ TECHFLOW"
   },
   {
-    quote: "I was skeptical about another AI tool, but the context retention here is unlike anything else on the market.",
-    author: "Marcus Chen",
-    role: "Product Lead",
-    rating: 5
+    quote: "ABSOLUTELY INSANE VELOCITY.",
+    author: "MARCUS CHEN",
+    role: "LEAD @ VERTEX"
   },
   {
-    quote: "The integration capabilities saved us months of custom engineering work. It just works.",
-    author: "Elena Rodriguez",
-    role: "Senior Architect",
-    rating: 5
+    quote: "THE FUTURE IS ALREADY HERE.",
+    author: "ELENA R.",
+    role: "ARCHITECT @ NEXUS"
   }
 ];
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-black border-y border-white/5">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-orange-500/20 transition-colors group"
-            >
-              <div className="flex gap-1 mb-6">
-                {[...Array(item.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-orange-500 text-orange-500" />
-                ))}
-              </div>
-              <p className="text-white/80 text-lg mb-6 leading-relaxed">&quot;{item.quote}&quot;</p>
+    <section className="py-32 bg-black border-y border-white/10 overflow-hidden">
+      <div className="container mx-auto px-6 mb-20">
+        <h2 className="font-display text-4xl font-bold text-white uppercase tracking-widest text-center">
+          Verified <span className="text-orange-500">Intel</span>
+        </h2>
+      </div>
+
+      <div className="relative flex overflow-x-hidden">
+        <div className="animate-marquee whitespace-nowrap flex gap-16">
+          {[...testimonials, ...testimonials].map((item, index) => (
+            <div key={index} className="w-[600px] shrink-0 p-12 border border-white/20 bg-white/5 rounded-3xl backdrop-blur-sm hover:border-orange-500 transition-colors duration-500 group">
+              <p className="font-display text-5xl font-bold text-white mb-8 leading-tight group-hover:text-orange-500 transition-colors">
+                &quot;{item.quote}&quot;
+              </p>
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-white/10 to-white/5 border border-white/10" />
+                <div className="w-4 h-4 bg-orange-500 rounded-full animate-pulse" />
                 <div>
-                  <div className="font-medium text-white group-hover:text-orange-500 transition-colors">{item.author}</div>
-                  <div className="text-xs text-white/40">{item.role}</div>
+                  <div className="font-bold text-white tracking-widest">{item.author}</div>
+                  <div className="text-sm text-white/50 tracking-widest">{item.role}</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

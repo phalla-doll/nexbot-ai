@@ -1,79 +1,71 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Check } from 'lucide-react';
+import { Check, Zap } from 'lucide-react';
 
 const plans = [
   {
-    name: "Starter",
+    name: "STARTER",
     price: "$0",
-    description: "Perfect for exploring the capabilities of NexBot.",
-    features: ["5,000 tokens per month", "Basic context window", "Community support", "Standard response time"],
+    features: ["5K TOKENS/MO", "BASIC MEMORY", "COMMUNITY COMMS"],
     highlight: false
   },
   {
-    name: "Professional",
+    name: "PRO",
     price: "$49",
-    description: "For power users who need consistent performance.",
-    features: ["Unlimited tokens", "Extended context window", "Priority support", "Fastest response time", "API access"],
+    features: ["UNLIMITED TOKENS", "FULL MEMORY", "PRIORITY COMMS", "API ACCESS"],
     highlight: true
   },
   {
-    name: "Enterprise",
-    price: "Custom",
-    description: "Tailored solutions for large-scale deployment.",
-    features: ["Dedicated infrastructure", "Custom model fine-tuning", "SLA guarantees", "24/7 dedicated support", "On-premise options"],
+    name: "CORP",
+    price: "CUSTOM",
+    features: ["DEDICATED NODE", "CUSTOM MODEL", "SLA GUARANTEE", "24/7 UPLINK"],
     highlight: false
   }
 ];
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-16 md:py-32 bg-black relative">
+    <section id="pricing" className="py-32 bg-black relative">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Simple, transparent <span className="text-orange-500">pricing.</span>
+        <div className="mb-24 text-center">
+          <h2 className="font-display text-6xl md:text-8xl font-bold text-white uppercase tracking-tighter">
+            Select Your <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">Power Level.</span>
           </h2>
-          <p className="text-white/60 text-base md:text-lg">
-            Choose the plan that fits your needs. No hidden fees.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative p-6 md:p-8 rounded-2xl border backdrop-blur-sm flex flex-col ${
+              className={`relative p-8 md:p-12 rounded-3xl border-2 flex flex-col transition-transform duration-500 hover:scale-105 ${
                 plan.highlight 
-                  ? 'bg-white/5 border-orange-500/50 shadow-[0_0_30px_rgba(249,115,22,0.15)]' 
-                  : 'bg-white/5 border-white/10 hover:border-white/20'
+                  ? 'bg-orange-500 border-orange-500 text-black scale-105 z-10 shadow-[0_0_50px_rgba(249,115,22,0.3)]' 
+                  : 'bg-black border-white/20 text-white hover:border-white'
               }`}
             >
               {plan.highlight && (
-                <div className="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 bg-orange-500 text-black text-[10px] md:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-black text-orange-500 px-6 py-2 rounded-full font-bold uppercase tracking-widest border border-orange-500 flex items-center gap-2">
+                  <Zap className="w-4 h-4 fill-orange-500" />
                   Most Popular
                 </div>
               )}
 
-              <div className="mb-6 md:mb-8">
-                <h3 className="font-display text-lg md:text-xl font-bold text-white mb-2">{plan.name}</h3>
-                <div className="flex items-baseline gap-1 mb-3 md:mb-4">
-                  <span className="text-3xl md:text-4xl font-bold text-white">{plan.price}</span>
-                  {plan.price !== "Custom" && <span className="text-white/40 text-sm md:text-base">/month</span>}
-                </div>
-                <p className="text-white/60 text-xs md:text-sm">{plan.description}</p>
+              <div className="mb-10">
+                <h3 className="font-display text-2xl font-bold mb-4 tracking-widest">{plan.name}</h3>
+                <div className="text-6xl font-bold tracking-tighter">{plan.price}</div>
               </div>
 
-              <div className="flex-grow mb-6 md:mb-8">
-                <ul className="space-y-3 md:space-y-4">
+              <div className="flex-grow mb-12">
+                <ul className="space-y-4">
                   {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3 text-xs md:text-sm text-white/80">
-                      <Check className={`w-4 h-4 mt-0.5 shrink-0 ${plan.highlight ? 'text-orange-500' : 'text-white/40'}`} />
+                    <li key={i} className="flex items-center gap-3 font-bold tracking-wide text-sm">
+                      <Check className={`w-5 h-5 ${plan.highlight ? 'text-black' : 'text-orange-500'}`} />
                       {feature}
                     </li>
                   ))}
@@ -81,13 +73,13 @@ export default function Pricing() {
               </div>
 
               <button 
-                className={`w-full py-3 rounded-lg font-medium text-sm transition-all duration-300 ${
+                className={`w-full py-5 rounded-xl font-bold text-lg uppercase tracking-widest transition-all duration-300 ${
                   plan.highlight 
-                    ? 'bg-orange-500 text-black hover:bg-orange-400 hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]' 
-                    : 'bg-white/10 text-white hover:bg-white/20'
+                    ? 'bg-black text-white hover:bg-white hover:text-black' 
+                    : 'bg-white text-black hover:bg-orange-500 hover:text-white'
                 }`}
               >
-                {plan.price === "Custom" ? "Contact Sales" : "Get Started"}
+                Initialize
               </button>
             </motion.div>
           ))}
