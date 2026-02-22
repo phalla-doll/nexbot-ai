@@ -1,12 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -14,7 +24,9 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-12 flex justify-between items-center backdrop-blur-md bg-black/50 border-b border-white/5"
+        className={`fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-12 flex justify-between items-center transition-all duration-300 ${
+          isScrolled ? 'backdrop-blur-md bg-black/80 border-b border-white/10' : 'bg-transparent'
+        }`}
       >
         <Link href="/" className="font-display text-2xl font-bold tracking-tighter text-white z-50">
           NEXBOT
@@ -34,7 +46,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:block">
-          <button className="bg-white text-black px-6 py-2 rounded-full font-medium text-sm hover:bg-orange-500 hover:text-white transition-all duration-300">
+          <button className="bg-orange-500 text-black px-6 py-2 rounded-full font-bold text-sm hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]">
             Get Access
           </button>
         </div>
@@ -69,7 +81,7 @@ export default function Navbar() {
               </Link>
             </div>
             
-            <button className="w-full bg-white text-black py-4 rounded-full font-medium text-lg hover:bg-orange-500 hover:text-white transition-all duration-300">
+            <button className="w-full bg-orange-500 text-black py-4 rounded-full font-bold text-lg hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(249,115,22,0.4)]">
               Get Access
             </button>
           </motion.div>
