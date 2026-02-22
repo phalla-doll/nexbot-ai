@@ -5,30 +5,32 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Spline Background */}
+    <section className="relative h-[100dvh] w-full overflow-hidden bg-black">
+      {/* Spline Background - Optimized for mobile */}
       <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-black/40 md:bg-transparent z-10 pointer-events-none" /> {/* Mobile dimmer */}
         <iframe 
           src='https://my.spline.design/nexbotrobotcharacterconcept-UYMSefKwUYx8I38ifwWN4bek/' 
           frameBorder='0' 
           width='100%' 
           height='100%'
-          className="w-full h-full"
+          className="w-full h-full scale-125 md:scale-100 origin-center object-cover"
+          title="3D Robot Character"
         ></iframe>
       </div>
 
       {/* Gradient Overlay for Text Readability */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/90 via-black/50 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-t md:bg-gradient-to-r from-black via-black/80 md:via-black/50 to-transparent pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-20 h-full flex items-center px-6 md:px-20 pt-20">
-        <div className="max-w-2xl">
+      <div className="relative z-20 h-full flex items-end md:items-center px-6 md:px-20 pb-24 md:pb-0 pt-20">
+        <div className="max-w-2xl w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="inline-block px-3 py-1 mb-6 text-xs font-medium tracking-wider text-orange-500 uppercase border border-orange-500/30 rounded-full bg-orange-500/10 backdrop-blur-sm">
+            <span className="inline-block px-3 py-1 mb-4 md:mb-6 text-[10px] md:text-xs font-medium tracking-wider text-orange-500 uppercase border border-orange-500/30 rounded-full bg-orange-500/10 backdrop-blur-sm">
               Next Gen AI Agent
             </span>
           </motion.div>
@@ -37,7 +39,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 leading-[0.9]"
+            className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-4 md:mb-6 leading-[0.95] md:leading-[0.9]"
           >
             INTELLIGENCE <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">
@@ -49,7 +51,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg md:text-xl text-white/60 mb-10 max-w-lg leading-relaxed"
+            className="text-base md:text-xl text-white/70 md:text-white/60 mb-8 md:mb-10 max-w-lg leading-relaxed"
           >
             Meet NexBot, your autonomous companion designed to navigate the digital world with human-like understanding and machine precision.
           </motion.p>
@@ -58,13 +60,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <button className="group flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full font-medium text-lg hover:bg-orange-500 hover:text-white transition-all hover:scale-105 active:scale-95 duration-300">
+            <button className="group flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full font-medium text-lg hover:bg-orange-500 hover:text-white transition-all hover:scale-105 active:scale-95 duration-300 w-full sm:w-auto">
               Start Building
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium text-lg text-white border border-white/20 hover:bg-white/10 transition-all backdrop-blur-sm">
+            <button className="flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium text-lg text-white border border-white/20 hover:bg-white/10 transition-all backdrop-blur-sm w-full sm:w-auto">
               Watch Demo
             </button>
           </motion.div>
@@ -76,7 +78,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 hidden md:flex"
       >
         <span className="text-[10px] uppercase tracking-widest text-white/40">Scroll</span>
         <div className="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent" />
